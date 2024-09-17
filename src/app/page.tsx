@@ -2,6 +2,7 @@
 import { signIn, useSession } from "next-auth/react";
 import dynamic from 'next/dynamic';
 import UserAuth from "@/components/UserAuth";
+import Announcement from "@/components/Announcement";
 
 const PhaserGame = dynamic(() => import('@/App'), { ssr: false });
 
@@ -20,6 +21,7 @@ export default function Home() {
           | 版本 beta 0.1.0
         </div>
         <UserAuth />
+        <Announcement />
     </>
   );
 }

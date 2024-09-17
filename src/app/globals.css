@@ -54,16 +54,3 @@ body {
 #developer-info a:hover {
   text-decoration: underline;
 }
-
-#update-notification {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #f6b056;
-  border-radius: 10px;
-  padding: 20px;
-  font-size: 20px;
-  z-index: 1000;
-}

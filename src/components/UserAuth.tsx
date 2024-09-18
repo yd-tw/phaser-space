@@ -15,7 +15,7 @@ export default function UserAuth() {
   if (session) {
     return (
       <div
-        className="absolute top-5 right-5 bg-[#f6b056] p-2 rounded-lg flex items-center cursor-pointer text-lg z-10"
+        className="absolute right-5 top-5 z-10 flex cursor-pointer items-center rounded-lg bg-[#f6b056] p-2 text-lg"
         onClick={() => signOut()}
       >
         <Image
@@ -23,9 +23,11 @@ export default function UserAuth() {
           alt="使用者頭像"
           width={40}
           height={40}
-          className="rounded-full mr-2"
+          className="mr-2 rounded-full"
         />
-        <span className="font-bold text-gray-900">{session.user?.name || session.user?.email}</span>
+        <span className="font-bold text-gray-900">
+          {session.user?.name || session.user?.email}
+        </span>
       </div>
     );
   }
@@ -33,7 +35,7 @@ export default function UserAuth() {
   // 如果用戶未登入，顯示登入按鈕
   return (
     <div
-      className="absolute top-5 right-5 bg-[#f6b056] p-2 rounded-lg flex items-center cursor-pointer text-lg z-10"
+      className="absolute right-5 top-5 z-10 flex cursor-pointer items-center rounded-lg bg-[#f6b056] p-2 text-lg"
       onClick={() => signIn("google")}
     >
       <Image
@@ -41,7 +43,7 @@ export default function UserAuth() {
         alt="使用者頭像"
         width={40}
         height={40}
-        className="rounded-full mr-2"
+        className="mr-2 rounded-full"
       />
       <span className="font-bold text-gray-900">使用 Google 登入</span>
     </div>

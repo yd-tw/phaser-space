@@ -1,15 +1,15 @@
-import { useRef } from 'react';
-import { IRefPhaserGame, PhaserGame } from './game/PhaserGame';
+import { useRef } from "react";
+import { IRefPhaserGame, PhaserGame } from "./game/PhaserGame";
 
 function App() {
-    // Reference to the PhaserGame component
-    const phaserRef = useRef<IRefPhaserGame | null>(null);
+  // Reference to the PhaserGame component
+  const phaserRef = useRef<IRefPhaserGame | null>(null);
 
-    return (
-        <div id="app">
-            <PhaserGame ref={phaserRef} />
-        </div>
-    );
+  return (
+    <div id="app">
+      <PhaserGame ref={phaserRef} />
+    </div>
+  );
 }
 
 export default App;

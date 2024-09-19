@@ -1,5 +1,5 @@
 import { forwardRef, useLayoutEffect, useRef } from "react";
-import StartGame from "./main"; // 假設 StartGame 是用來初始化 Phaser 遊戲的函式
+import StartGame from "./main";
 
 export interface IRefPhaserGame {
   game: Phaser.Game | null;

@@ -22,7 +22,7 @@ export default function WebInfo() {
         >
           Copyright © 2024 CodeCat team.
         </a>
-        | 版本 beta 0.1.0
+        | 版本 beta 0.4.0
       </div>
     </>
   );

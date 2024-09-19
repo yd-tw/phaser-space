@@ -1,7 +1,6 @@
 import { Game } from "phaser";
 import MainScene from "./scenes/MainScene";
-import House1Scene from "./scenes/House1Scene";
-import House2Scene from "./scenes/House2Scene";
+import Menu from "./scenes/Menu";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -21,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
       debug: false,
     },
   },
-  scene: [MainScene, House1Scene, House2Scene],
+  scene: [MainScene, Menu],
 };
 
 const StartGame = (parent: string) => {

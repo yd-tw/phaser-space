@@ -1,5 +1,4 @@
 "use client";
-
 import dynamic from "next/dynamic";
 import UserAuth from "@/components/UserAuth";
 import Announcement from "@/components/Announcement";

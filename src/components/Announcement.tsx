@@ -15,7 +15,7 @@ function setCookie(name: string, value: string, days: number): void {
 }
 
 export default function UpdateNotification(): JSX.Element | null {
-  const latestVersion = "beta 0.3.0";
+  const latestVersion = "0.4.0";
   const [isNotified, setIsNotified] = useState<boolean>(true);
 
   useEffect(() => {
@@ -42,12 +42,10 @@ export default function UpdateNotification(): JSX.Element | null {
         >
           &#x2715;
         </button>
-        <p className="mb-2">beta 0.3.0 「架構更新」正式推出</p>
+        <p className="mb-2">0.4.0 「戰車更新」正式推出</p>
         <ul className="list-disc pl-5">
-          <li>伺服器已由 live-server 遷移至 nextjs</li>
-          <li>現在支援 Google 帳戶登入</li>
-          <li>變更公告顯示邏輯與介面</li>
-          <li>切換場景前向玩家再次確認</li>
+          <li>重新設計遊戲運作邏輯</li>
+          <li>現在支援重新開始遊戲</li>
         </ul>
       </div>
     </div>

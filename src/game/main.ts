@@ -1,5 +1,5 @@
 import { Game } from "phaser";
-import MainScene from "./scenes/MainScene";
+import MainScene from "./scenes/Main";
 import Menu from "./scenes/Menu";
 
 //  Find out more information about the Game Config at:

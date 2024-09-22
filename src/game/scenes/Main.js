@@ -1,112 +1,67 @@
-import Star from "./Star";
-import Bullet from "./Bullet";
-
 export default class MainScene extends Phaser.Scene {
   constructor() {
     super({ key: "MainScene" });
   }
 
+  init(data) {
+    this.score = data.score;
+  }
+
   preload() {
-    this.load.image("starship", "assets/player.jpg");
-    this.load.image("star", "assets/house.png");
-    this.load.image("bullet", "assets/bullet.png");
+    this.load.image("background", "assets/background.png");
+    this.load.audio("bgMusic", "assets/music.mp3");
   }
 
   create() {
-    this.score = 0;
-    this.lives = 3;
-    this.scoreText = this.add.text(16, 16, "Score: 0", {
-      fontSize: "32px",
-      fill: "#000",
-    });
-    this.livesText = this.add.text(16, 50, "Lives: 3", {
-      fontSize: "32px",
-      fill: "#000",
-    });
+    this.add
+      .image(this.scale.width / 2, this.scale.height / 2, "background")
+      .setDisplaySize(this.scale.width, this.scale.height);
 
-    this.starship = this.physics.add.sprite(100, 300, "starship");
-    this.starship.setCollideWorldBounds(true);
-
-    this.stars = this.physics.add.group();
-    this.bullets = this.physics.add.group();
-
-    this.time.addEvent({
-      delay: 1000,
-      callback: () => this.spawnStar(),
+    const backgroundMusic = this.sound.add("bgMusic", {
       loop: true,
+      volume: 0.5,
     });
+    backgroundMusic.play();
 
-    this.cursors = this.input.keyboard.createCursorKeys();
-
-    // 新增子彈與玩家的碰撞檢測
-    this.physics.add.overlap(
-      this.starship,
-      this.stars,
-      this.collectStar,
-      null,
-      this,
-    );
-    this.physics.add.overlap(
-      this.starship,
-      this.bullets,
-      this.hitByBullet,
-      null,
-      this,
-    );
-  }
-
-  update() {
-    if (this.cursors.up.isDown) {
-      this.starship.setVelocityY(-200);
-    } else if (this.cursors.down.isDown) {
-      this.starship.setVelocityY(200);
-    } else {
-      this.starship.setVelocityY(0);
+    this.add
+      .text(
+        this.scale.width / 2,
+        (this.scale.height / 3) * 2 - 130,
+        "早安owo",
+        {
+          fontSize: "48px",
+          fill: "#fff",
+        },
+      )
+      .setOrigin(0.5);
+    if (this.score !== undefined) {
+      this.add
+        .text(
+          this.scale.width / 2,
+          (this.scale.height / 3) * 2 - 80,
+          `Score: ${this.score}`,
+          {
+            fontSize: "32px",
+            fill: "#fff",
+          },
+        )
+        .setOrigin(0.5);
     }
 
-    // 清除超出範圍的星星
-    this.stars.children.iterate((star) => {
-      if (star && star.x < 0) {
-        star.destroy();
-      }
+    const playButton = this.add
+      .text(this.scale.width / 2, (this.scale.height / 3) * 2, "開始遊戲", {
+        fontSize: "32px",
+        fill: "#000",
+        backgroundColor: "#fff",
+        padding: { x: 10, y: 10 },
+      })
+      .setOrigin(0.5);
+
+    playButton.setInteractive();
+
+    playButton.on("pointerdown", () => {
+      backgroundMusic.stop();
+      this.scene.start("FightingScene");
     });
-
-    // 清除超出範圍的子彈
-    this.bullets.children.iterate((bullet) => {
-      if (bullet && bullet.x < 0) {
-        bullet.destroy();
-      }
-    });
-  }
-
-  spawnStar() {
-    const star = new Star(this, this.stars);
-    star.createStar();
-
-    // 隨機產生星星攻擊的子彈
-    this.time.addEvent({
-      delay: Phaser.Math.Between(1, 3000),
-      callback: () => {
-        const bullet = new Bullet(this, this.bullets, star.sprite);
-        bullet.shoot();
-      },
-      loop: true,
-    });
-  }
-
-  collectStar(starship, star) {
-    star.destroy();
-    this.score += 10;
-    this.scoreText.setText("Score: " + this.score);
-  }
-
-  hitByBullet(starship, bullet) {
-    bullet.destroy();
-    this.lives -= 1;
-    this.livesText.setText("Lives: " + this.lives);
-
-    if (this.lives <= 0) {
-      this.scene.start("MenuScene", { score: this.score });
-    }
   }
 }

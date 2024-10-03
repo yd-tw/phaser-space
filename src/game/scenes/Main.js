@@ -23,17 +23,6 @@ export default class MainScene extends Phaser.Scene {
     });
     backgroundMusic.play();
 
-    this.add
-      .text(
-        this.scale.width / 2,
-        (this.scale.height / 3) * 2 - 130,
-        "早安owo",
-        {
-          fontSize: "48px",
-          fill: "#fff",
-        },
-      )
-      .setOrigin(0.5);
     if (this.score !== undefined) {
       this.add
         .text(
@@ -50,7 +39,7 @@ export default class MainScene extends Phaser.Scene {
 
     const playButton = this.add
       .text(this.scale.width / 2, (this.scale.height / 3) * 2, "開始遊戲", {
-        fontSize: "32px",
+        fontSize: "64px",
         fill: "#000",
         backgroundColor: "#fff",
         padding: { x: 10, y: 10 },
@@ -61,7 +50,7 @@ export default class MainScene extends Phaser.Scene {
 
     playButton.on("pointerdown", () => {
       backgroundMusic.stop();
-      this.scene.start("FightingScene");
+      this.scene.start("SpaceScene");
     });
   }
 }

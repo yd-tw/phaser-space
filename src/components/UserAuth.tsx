@@ -15,7 +15,7 @@ export default function UserAuth() {
   if (session) {
     return (
       <div
-        className="absolute right-5 top-5 z-10 flex cursor-pointer items-center rounded-lg bg-[#f6b056] p-2 text-lg"
+        className="absolute left-10 top-10 z-10 flex cursor-pointer items-center rounded-lg bg-[#f6b056] p-2 text-lg"
         onClick={() => signOut()}
       >
         <Image

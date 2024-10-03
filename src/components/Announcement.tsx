@@ -42,10 +42,11 @@ export default function UpdateNotification(): JSX.Element | null {
         >
           &#x2715;
         </button>
-        <p className="mb-2">0.4.0 「戰車更新」正式推出</p>
+        <p className="mb-2">0.5.0 「太空更新」正式推出</p>
         <ul className="list-disc pl-5">
           <li>重新設計遊戲運作邏輯</li>
-          <li>現在支援重新開始遊戲</li>
+          <li>加入太空遊戲基本要素</li>
+          <li>新增原創音效</li>
         </ul>
       </div>
     </div>

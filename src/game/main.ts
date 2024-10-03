@@ -1,12 +1,12 @@
 import { Game } from "phaser";
-import FightingScene from "./scenes/Fighting";
+import SpaceScene from "./scenes/Space";
 import MainScene from "./scenes/Main";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  backgroundColor: "#F3ECE0",
+  backgroundColor: "#000",
   scale: {
     mode: Phaser.Scale.RESIZE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
@@ -20,7 +20,7 @@ const config: Phaser.Types.Core.GameConfig = {
       debug: false,
     },
   },
-  scene: [MainScene, FightingScene],
+  scene: [MainScene, SpaceScene],
 };
 
 const StartGame = (parent: string) => {

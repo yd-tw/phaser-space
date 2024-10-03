@@ -33,7 +33,7 @@ export default class FightingScene extends Phaser.Scene {
     this.time.addEvent({
       delay: 1000,
       callback: () => this.spawnStar(),
-      loop: true,
+      loop: false,
     });
 
     // 使用WASD鍵控制

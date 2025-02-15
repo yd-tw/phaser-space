@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type JSX } from "react";
 
 function getCookie(name: string): string | null {
   const value = `; ${document.cookie}`;

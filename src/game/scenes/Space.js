@@ -1,6 +1,6 @@
 export default class SpaceScene extends Phaser.Scene {
   constructor() {
-    super('SpaceScene');
+    super("SpaceScene");
     this.playerPosition = { x: 0, y: 0 }; // 固定玩家虛擬位置為(0, 0)
     this.enemies = [];
     this.bullets = null; // 子彈群組
@@ -9,15 +9,15 @@ export default class SpaceScene extends Phaser.Scene {
 
   preload() {
     // 載入玩家、敵方、子彈的資源
-    this.load.image('player', 'assets/player.png');
-    this.load.image('enemy', 'assets/enemy.png');
-    this.load.image('bullet', 'assets/bullet.png');
-    this.load.audio('shootSound', 'assets/shoot.mp3');
+    this.load.image("player", "assets/player.png");
+    this.load.image("enemy", "assets/enemy.png");
+    this.load.image("bullet", "assets/bullet.png");
+    this.load.audio("shootSound", "assets/shoot.mp3");
   }
 
   create() {
     // 玩家靜止在畫面中央，固定在(0, 0)
-    this.player = this.add.sprite(0, 0, 'player').setOrigin(0.5, 0.5);
+    this.player = this.add.sprite(0, 0, "player").setOrigin(0.5, 0.5);
     this.player.setPosition(this.scale.width / 2, this.scale.height / 2);
 
     // 創建隨機數量的敵方太空船
@@ -28,20 +28,22 @@ export default class SpaceScene extends Phaser.Scene {
 
     // 建立子彈群組，並啟用物理屬性
     this.bullets = this.physics.add.group({
-      defaultKey: 'bullet',
-      maxSize: 10
+      defaultKey: "bullet",
+      maxSize: 10,
     });
 
     // 在左下角顯示玩家的虛擬座標
-    this.positionText = this.add.text(10, this.scale.height - 30, '', {
-      fontSize: '16px',
-      fill: '#ffffff'
-    }).setScrollFactor(0); // 保持文字標籤不隨場景滾動
+    this.positionText = this.add
+      .text(10, this.scale.height - 30, "", {
+        fontSize: "16px",
+        fill: "#ffffff",
+      })
+      .setScrollFactor(0); // 保持文字標籤不隨場景滾動
 
     // 設定滑鼠點擊發射子彈
-    this.input.on('pointerdown', this.shootBullet, this);
+    this.input.on("pointerdown", this.shootBullet, this);
 
-    this.shootSound = this.sound.add('shootSound'); 
+    this.shootSound = this.sound.add("shootSound");
   }
 
   update() {
@@ -62,7 +64,7 @@ export default class SpaceScene extends Phaser.Scene {
     }
 
     // 根據玩家虛擬位置更新敵方太空船的相對位置，並讓敵人朝玩家方向移動
-    this.enemies.forEach(enemy => {
+    this.enemies.forEach((enemy) => {
       const offsetX = enemy.initialPosition.x - this.playerPosition.x;
       const offsetY = enemy.initialPosition.y - this.playerPosition.y;
 
@@ -71,7 +73,7 @@ export default class SpaceScene extends Phaser.Scene {
         enemy.initialPosition.x,
         enemy.initialPosition.y,
         this.playerPosition.x,
-        this.playerPosition.y
+        this.playerPosition.y,
       );
 
       // 計算速度，讓敵人朝玩家方向移動
@@ -79,17 +81,27 @@ export default class SpaceScene extends Phaser.Scene {
       enemy.initialPosition.x += Math.cos(angle) * enemySpeed;
       enemy.initialPosition.y += Math.sin(angle) * enemySpeed;
 
-      enemy.setPosition(this.scale.width / 2 + offsetX, this.scale.height / 2 + offsetY);
+      enemy.setPosition(
+        this.scale.width / 2 + offsetX,
+        this.scale.height / 2 + offsetY,
+      );
     });
 
     // 更新左下角的文字標籤顯示玩家的虛擬座標
-    this.positionText.setText(`Player Position: (${this.playerPosition.x}, ${this.playerPosition.y})`);
+    this.positionText.setText(
+      `Player Position: (${this.playerPosition.x}, ${this.playerPosition.y})`,
+    );
 
     // 子彈邏輯
-    this.bullets.getChildren().forEach(bullet => {
+    this.bullets.getChildren().forEach((bullet) => {
       if (bullet.active) {
         // 如果子彈超出邊界就將其銷毀
-        if (bullet.x < -2000 || bullet.x > 2000 || bullet.y < -2000 || bullet.y > 2000) {
+        if (
+          bullet.x < -2000 ||
+          bullet.x > 2000 ||
+          bullet.y < -2000 ||
+          bullet.y > 2000
+        ) {
           bullet.setActive(false);
           bullet.setVisible(false);
         }
@@ -115,11 +127,15 @@ export default class SpaceScene extends Phaser.Scene {
         this.scale.width / 2,
         this.scale.height / 2,
         pointer.x,
-        pointer.y
+        pointer.y,
       );
 
       const bulletSpeed = 500;
-      this.physics.velocityFromRotation(angle, bulletSpeed, bullet.body.velocity);
+      this.physics.velocityFromRotation(
+        angle,
+        bulletSpeed,
+        bullet.body.velocity,
+      );
     }
   }
 
@@ -137,7 +153,7 @@ export default class SpaceScene extends Phaser.Scene {
     const enemy = this.add.sprite(
       Phaser.Math.Between(-1000, 1000),
       Phaser.Math.Between(-1000, 1000),
-      'enemy'
+      "enemy",
     );
     enemy.initialPosition = { x: enemy.x, y: enemy.y }; // 儲存敵人的初始位置
     this.enemies.push(enemy);

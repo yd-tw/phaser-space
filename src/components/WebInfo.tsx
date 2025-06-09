@@ -12,7 +12,7 @@ export default function WebInfo() {
       />
       <div
         id="developer-info"
-        className="absolute bottom-1 right-1 rounded bg-gray-800 p-1.5 text-xs text-white"
+        className="absolute bottom-1 right-1 rounded-sm bg-gray-800 p-1.5 text-xs text-white"
       >
         <a
           href="https://www.codecat.tw"
@@ -20,9 +20,9 @@ export default function WebInfo() {
           rel="noopener noreferrer"
           className="hover:underline"
         >
-          Copyright © 2024 CodeCat team.
+          Copyright © 2025 CodeCat team.
         </a>
-        | 版本 beta 0.5.0
+        | 版本 v1.0.1
       </div>
     </>
   );
